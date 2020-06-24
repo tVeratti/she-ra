@@ -8,6 +8,7 @@ import Layout from '../components/layout';
 const Character = ({ data }) => {
   const { markdownRemark: post } = data;
 
+  console.log(post);
   return (
     <Layout>
       <section>
@@ -17,7 +18,7 @@ const Character = ({ data }) => {
         </Helmet>
 
         <h1>{post.frontmatter.name}</h1>
-        {/* <Img fixed={post.frontmatter.image.fixed} /> */}
+        <Img fluid={post.frontmatter.image.childImageSharp.fluid} />
       </section>
     </Layout>
   );
@@ -32,15 +33,14 @@ export const pageQuery = graphql`
       html
       frontmatter {
         name
+        image {
+          childImageSharp {
+            fluid(maxWidth: 2048, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }
 `;
-
-// image {
-//   childImageSharp {
-//     fixed(width: 545, height: 640) {
-//       ...GatsbyImageSharpFixed
-//     }
-//   }
-// }
