@@ -1,0 +1,22 @@
+backend:
+  name: git-gateway
+  branch: base
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: 'character'
+    label: 'Character'
+    folder: 'content/characters'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - {
+          label: 'Template Key',
+          name: 'templateKey',
+          widget: 'hidden',
+          default: 'character',
+        }
+      - { label: 'Name', name: 'name', widget: 'string' }
+      - { label: 'Image', name: 'image', widget: 'image' }
